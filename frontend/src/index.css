@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg: #f5f7fb;
+  --bg-elevated: rgba(255, 255, 255, 0.78);
+  --panel: rgba(255, 255, 255, 0.92);
+  --text: #09111f;
+  --muted: #52607a;
+  --line: rgba(15, 23, 42, 0.08);
+  --accent: #116466;
+  --accent-soft: rgba(17, 100, 102, 0.16);
+  --accent-2: #d97d54;
+  --success: #1f9d75;
+  --danger: #d64545;
+}
+
+[data-theme='miet-dark'] {
+  color-scheme: dark;
+  --bg: #09111f;
+  --bg-elevated: rgba(9, 17, 31, 0.7);
+  --panel: rgba(17, 24, 39, 0.86);
+  --text: #f8fafc;
+  --muted: #9aa8c1;
+  --line: rgba(148, 163, 184, 0.14);
+  --accent: #7dd3c6;
+  --accent-soft: rgba(125, 211, 198, 0.14);
+  --accent-2: #f7a072;
+  --success: #4ade80;
+  --danger: #f87171;
+}
+
+[data-theme='miet-royal'] {
+  color-scheme: dark;
+  --bg: #130d28;
+  --bg-elevated: rgba(19, 13, 40, 0.72);
+  --panel: rgba(34, 20, 64, 0.88);
+  --text: #f7f0ff;
+  --muted: #b7add1;
+  --line: rgba(226, 203, 255, 0.14);
+  --accent: #ffd166;
+  --accent-soft: rgba(255, 209, 102, 0.12);
+  --accent-2: #70d6ff;
+  --success: #8be9a8;
+  --danger: #ff7b7b;
+}
+
+body {
+  @apply min-h-screen bg-[var(--bg)] bg-grid bg-[size:32px_32px] font-body text-[var(--text)] antialiased;
+}
+
+#root {
+  @apply min-h-screen;
+}
+
+.glass-panel {
+  @apply border border-[var(--line)] bg-[var(--panel)] shadow-glass backdrop-blur-xl;
+}
+
+.section-title {
+  @apply font-display text-2xl font-semibold tracking-tight;
+}

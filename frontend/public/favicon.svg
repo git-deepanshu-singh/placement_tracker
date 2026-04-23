@@ -1,0 +1,17 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mietRing" x1="76" y1="76" x2="436" y2="436" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F766E"/>
+      <stop offset="1" stop-color="#E76F51"/>
+    </linearGradient>
+    <linearGradient id="mietText" x1="168" y1="158" x2="356" y2="354" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12343B"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+  <rect x="40" y="40" width="432" height="432" rx="120" fill="#F8FAFC"/>
+  <rect x="40" y="40" width="432" height="432" rx="120" stroke="url(#mietRing)" stroke-width="22"/>
+  <path d="M140 166H188L256 282L324 166H372V346H324V247L274 329H238L188 247V346H140V166Z" fill="url(#mietText)"/>
+  <circle cx="384" cy="144" r="26" fill="#E76F51"/>
+  <path d="M148 390C198 354 316 354 366 390" stroke="#E76F51" stroke-width="22" stroke-linecap="round"/>
+</svg>
