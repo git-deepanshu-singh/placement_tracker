@@ -233,7 +233,7 @@ export function DrivesPage() {
               ) : (
                 <div className="flex flex-wrap gap-3">
                   <a
-                    href={`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/drives/${drive._id}/applications/export`}
+                    href={`${import.meta.env.VITE_API_URL}/drives/${drive._id}/applications/export`}
                     className="rounded-2xl border border-[var(--line)] px-5 py-3 text-sm font-semibold"
                     target="_blank"
                     rel="noreferrer"
