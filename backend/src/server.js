@@ -27,10 +27,9 @@ const startServer = async () => {
     console.log("⏰ Starting scheduler...");
     scheduleDeadlineReminders();
 
-    server.listen(PORT, () => {
-      console.log(`✅ Server running on port ${PORT}`);
-    });
-
+    server.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ Server running on port ${PORT}`);
+});
   } catch (error) {
     console.error("❌ Server startup failed:", error);
     process.exit(1);

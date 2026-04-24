@@ -1,8 +1,13 @@
 import nodemailer from 'nodemailer';
+import { isSmtpConfigured } from './env.js';
 
 let transporter;
 
 const getTransporter = () => {
+  if (!isSmtpConfigured()) {
+    return null;
+  }
+
   if (!transporter) {
     transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
@@ -20,13 +25,21 @@ const getTransporter = () => {
 
 export const sendEmail = async ({ to, subject, html }) => {
   if (!to || !subject || !html) {
-    return;
+    return false;
   }
 
-  await getTransporter().sendMail({
+  const activeTransporter = getTransporter();
+  if (!activeTransporter) {
+    console.warn('SMTP is not configured. Skipping email send.');
+    return false;
+  }
+
+  await activeTransporter.sendMail({
     from: process.env.MAIL_FROM,
     to,
     subject,
     html,
   });
+
+  return true;
 };

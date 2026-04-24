@@ -97,6 +97,7 @@ Use this as a practical starter setup for local development:
 ```env
 PORT=5000
 CLIENT_URL=http://localhost:5173
+FRONTEND_URL=http://localhost:5173
 MONGO_URI=mongodb://127.0.0.1:27017
 MONGO_DB_NAME=placement_tracker
 JWT_SECRET=super_secret_jwt_key
@@ -187,6 +188,9 @@ Deployment guidance is documented in [docs/deployment-guide.md](/c:/Users/Mohd.%
 - Backend target: Render
 - Frontend target: Vercel
 - Data services: MongoDB Atlas
+- `CLIENT_URL` now controls CORS origins and supports comma-separated values
+- `FRONTEND_URL` is used for password reset links
+- SMTP and Google API credentials are optional for the first production deploy
 
 ## Recommended Production Hardening
 

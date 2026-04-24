@@ -1,4 +1,5 @@
 import { google } from 'googleapis';
+import { getPrimaryFrontendUrl } from './env.js';
 
 const getAuthClient = () => {
   if (!process.env.GOOGLE_CLIENT_EMAIL || !process.env.GOOGLE_PRIVATE_KEY) {
@@ -23,7 +24,7 @@ export const createDriveForm = async ({ drive, fields }) => {
   if (!auth) {
     return {
       formId: `local-form-${drive._id}`,
-      responderUri: `${process.env.CLIENT_URL?.split(',')[0] || 'http://localhost:5173'}/drives/${drive._id}/apply`,
+      responderUri: `${getPrimaryFrontendUrl()}/drives/${drive._id}/apply`,
       editUri: null,
       fields,
     };

@@ -29,8 +29,10 @@ npm start
 ```
 
 4. Add environment variables from [backend/.env.example](/c:/Users/Mohd.%20Shaquib/OneDrive/Desktop/project/backend/.env.example).
-5. Set `CLIENT_URL` to your Vercel production URL.
-6. If you want dedicated reminder execution, add a Render background worker for the scheduler.
+5. Set `CLIENT_URL` to your frontend URL. You can provide multiple comma-separated origins if needed.
+6. Set `FRONTEND_URL` to your main frontend URL for password-reset links.
+7. `SMTP_*` and Google API env vars are optional for the first deploy. The app will still boot without them.
+8. If you want dedicated reminder execution, add a Render background worker for the scheduler.
 
 ## 3. Frontend on Vercel
 
@@ -63,6 +65,7 @@ npm run build
 - `JWT_SECRET` is rotated and strong
 - HTTPS is enforced by hosting platforms
 - CORS `CLIENT_URL` includes only known origins
+- `FRONTEND_URL` matches the main public frontend URL
 - MongoDB uses a least-privilege database user
 - Power BI connects with read-only MongoDB credentials or exported reports
 - Admin seed credentials are changed after first login

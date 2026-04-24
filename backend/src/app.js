@@ -7,14 +7,19 @@ import morgan from 'morgan';
 import { apiLimiter } from './middleware/rateLimiter.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 import routes from './routes/index.js';
+import { getAllowedOrigins } from './utils/env.js';
 
 const app = express();
+const allowedOrigins = getAllowedOrigins();
 
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://placement-tracker-tau.vercel.app"
-  ],
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error('CORS origin not allowed'));
+  },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]

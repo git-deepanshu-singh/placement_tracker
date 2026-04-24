@@ -5,6 +5,7 @@ import User from '../models/User.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { sendEmail } from '../utils/mailer.js';
 import { calculateReadiness } from '../utils/readiness.js';
+import { getPrimaryFrontendUrl, isSmtpConfigured } from '../utils/env.js';
 import { signToken } from '../utils/token.js';
 import { AppError } from '../middleware/errorHandler.js';
 
@@ -101,7 +102,11 @@ export const forgotPassword = asyncHandler(async (req, res) => {
 
   const resetToken = crypto.randomBytes(32).toString('hex');
   const hashedToken = crypto.createHash('sha256').update(resetToken).digest('hex');
-  const frontendBaseUrl = process.env.FRONTEND_URL || process.env.CLIENT_URL || 'http://localhost:5173';
+  if (!isSmtpConfigured()) {
+    throw new AppError('Password reset email is not configured on the server yet.', StatusCodes.SERVICE_UNAVAILABLE);
+  }
+
+  const frontendBaseUrl = getPrimaryFrontendUrl();
   const resetUrl = `${frontendBaseUrl}/login?resetToken=${resetToken}&email=${encodeURIComponent(user.email)}`;
 
   user.resetPasswordToken = hashedToken;
