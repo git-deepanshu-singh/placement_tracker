@@ -13,9 +13,16 @@ const app = express();
 const allowedOrigins = getAllowedOrigins();
 
 app.use(cors({
-  origin: true,
-  credentials: true
+  origin: [
+    "http://localhost:5173",
+    "https://placement-tracker-tau.vercel.app"
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
+app.options('*', cors());
 
 app.use(helmet());
 app.use(morgan('dev'));
