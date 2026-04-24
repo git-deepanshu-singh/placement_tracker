@@ -1,15 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 export const connectMongo = async () => {
-  const mongoUri = process.env.MONGO_URI;
-
-  if (!mongoUri) {
-    throw new Error('MONGO_URI is not configured');
+  if (!process.env.MONGO_URI) {
+    throw new Error("MONGO_URI is missing ❌");
   }
 
-  await mongoose.connect(mongoUri, {
-    dbName: process.env.MONGO_DB_NAME || 'placement_tracker',
-  });
-
-  console.log('MongoDB connected');
+  await mongoose.connect(process.env.MONGO_URI);
+  console.log("MongoDB connected ✅");
 };
